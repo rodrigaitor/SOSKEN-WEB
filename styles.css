@@ -1,0 +1,1770 @@
+/* ==========================================
+   VARIABLES DE DISEÑO (TEMA SOSKEN)
+   ========================================== */
+:root {
+    /* Colores */
+    --color-surface: #294654;
+    --color-on-surface: #f8f7ec;
+    --color-primary: #d99703;
+    --color-surface-variant: #2d4957;
+    --color-photo-bg: #f8f7ec;
+    --color-on-photo-bg: #2d4957;
+
+    /* Fuentes */
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+
+    /* Espaciados Nativos */
+    --gutter-desktop: 32px;
+    --gutter-mobile: 16px;
+    --section-gap-desktop: 160px;
+    --section-gap-mobile: 80px;
+
+    /* Bordes */
+    --radius-sm: 0.125rem;
+    --radius-md: 0.25rem;
+    --radius-lg: 0.5rem;
+}
+
+/* ==========================================
+   RESETS Y ESTILOS GLOBALES
+   ========================================== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* 1. EL IMPORT VA SIEMPRE AL PRINCIPIO DEL ARCHIVO */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+/* Importamos ambas fuentes en una sola línea */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Raleway:wght@400;700&display=swap');
+
+
+/* 2. LUEGO TU SELECTOR BODY */
+body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    /* Sustituimos la variable por la fuente directamente */
+
+    font-size: 16px;
+    overflow-x: hidden;
+    font-family: 'Figtree', sans-serif;
+    /* Figtree para todo el cuerpo de texto */
+    line-height: 1.6;
+}
+
+
+.nav-link,
+.btn-enquire,
+.btn-primary,
+/* .section-title-large, 
+.section-title-large-cinematic,  */
+.story-title,
+.experience-title,
+.item-title,
+.brand-title,
+.btn-submit {
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    /* Montserrat luce muy bien en mayúsculas */
+    letter-spacing: 1.5px;
+}
+
+.section-subtitle,
+.brand-subtitle,
+.item-subtitle,
+.testimonial-author,
+.scroll-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    /* La itálica le da ese toque de "handwriting" elegante */
+    text-transform: none;
+    /* Quitamos las mayúsculas para que sea más natural */
+    letter-spacing: normal;
+}
+
+
+p {
+    font-family: 'Figtree', sans-serif;
+    font-weight: 300;
+}
+
+/* Refuerzo para los botones si es necesario */
+.btn-primary,
+.btn-submit {
+    font-weight: 600;
+}
+
+/* Ajuste para el logo (si quieres que mantenga su estilo) */
+.nav-logo {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+
+
+/* Barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #131313;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+}
+
+/* Selección de texto */
+::selection {
+    background-color: var(--color-primary);
+    color: #000;
+}
+
+/* Íconos globales */
+.material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+
+/* ==========================================
+   HEADER / NAVEGACIÓN SUPERIOR
+   ========================================== */
+.hero-img {
+    width: 100%;
+    /* Ocupa todo el ancho del contenedor */
+    height: 100%;
+    /* Ajusta según la altura que desees */
+    object-fit: cover;
+    /* Importante: recorta la imagen manteniendo su proporción para que no se deforme */
+    object-position: center;
+    /* Centra el enfoque de la imagen */
+    display: block;
+    /* Elimina espacios en blanco debajo de la imagen */
+    filter: brightness(0.9);
+    /* Opcional: le da un ligero oscurecimiento para mejor contraste con texto encima */
+}
+
+
+
+
+
+/* Ajuste para móviles */
+@media (max-width: 768px) {
+    .hero-img {
+        height: 700px;
+        /* Reduce la altura en pantallas pequeñas */
+    }
+}
+
+.top-nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    background-color: rgba(17, 28, 33, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    height: 80px;
+    transition: all 0.5s ease;
+}
+
+.logo-header {
+    width: 100%;
+    height: auto;
+    filter: grayscale(0.5);
+    transition: all 0.5s ease;
+}
+
+.logo-image {
+    width: 130px;
+    height: auto;
+    filter: grayscale(0.5);
+    transition: all 0.5s ease;
+}
+
+/* Estado cuando el usuario hace Scroll (manejado por JS) */
+.top-nav.scrolled {
+    height: 64px;
+    background-color: rgba(41, 70, 84, 0.95);
+}
+
+.nav-container {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 var(--gutter-mobile);
+}
+
+.nav-logo {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--color-on-surface);
+    width: 200px;
+}
+
+
+.logo-accent {
+    color: var(--color-primary);
+    font-size: 33px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+}
+
+.logo-accent-burguer {
+    color: var(--color-primary);
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+}
+
+
+.logo_inicio {
+    width: 20px;
+    height: 20px;
+    filter: grayscale(0.5);
+    transition: all 0.5s ease;
+}
+
+.logo_inicio:hover {
+    height: auto;
+    filter: grayscale(0.5);
+    transition: all 0.5s ease;
+}
+
+
+
+.desktop-menu {
+    display: none;
+    /* Oculto en móvil */
+    align-items: center;
+    gap: 48px;
+}
+
+.nav-link {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    color: rgba(248, 247, 236, 0.7);
+    transition: color 0.5s ease;
+}
+
+.nav-link:hover,
+.active-link {
+    color: var(--color-primary);
+}
+
+.active-link {
+    border-bottom: 1px solid var(--color-primary);
+    padding-bottom: 4px;
+}
+
+.btn-enquire {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    padding: 10px 24px;
+    transition: transform 0.3s ease;
+}
+
+.btn-enquire:hover {
+    transform: scale(1.05);
+}
+
+.menu-toggle-btn {
+    color: var(--color-primary);
+}
+
+.menu-toggle-btn .material-symbols-outlined {
+    font-size: 36px;
+}
+
+/* ==========================================
+   MENÚ DE CORTINA MÓVIL
+   ========================================== */
+.side-nav-curtain {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background-color: rgba(41, 70, 84, 0.95);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    transform: translateX(100%);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+
+.side-nav-curtain.open {
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.side-nav-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: var(--gutter-mobile);
+    position: relative;
+}
+
+.menu-close-btn {
+    position: absolute;
+    top: 32px;
+    right: var(--gutter-mobile);
+    color: var(--color-primary);
+}
+
+.menu-close-btn .material-symbols-outlined {
+    font-size: 36px;
+}
+
+.side-nav-brand {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.brand-title {
+    font-family: var(--font-display);
+    color: var(--color-on-surface);
+    font-size: 32px;
+    letter-spacing: 0.2em;
+}
+
+.brand-subtitle {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+    opacity: 0.7;
+    margin-top: 8px;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 64px;
+}
+
+.mobile-link {
+    font-family: var(--font-display);
+    font-size: 32px;
+    transition: all 0.7s ease;
+    color: rgba(248, 247, 236, 0.6);
+}
+
+.mobile-link:hover,
+.active-mobile {
+    color: var(--color-primary);
+    letter-spacing: 0.1em;
+}
+
+.btn-consultation {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 16px 40px;
+    transition: all 0.3s ease;
+}
+
+.btn-consultation:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-video-container {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.hero-iframe {
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100vh;
+    min-width: 177.77vh;
+    /* <--- Corregido */
+    position: absolute;
+    top: 50%;
+    /* <--- Corregido */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    filter: brightness(0.35);
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(41, 70, 84, 0.4), transparent, var(--color-surface));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 var(--gutter-mobile);
+}
+
+.hero-title {
+
+    font-size: 13px;
+    font-weight: 300;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    max-width: 40rem;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+
+.hero-subtitle {
+
+    font-size: 11px;
+    font-style: italic;
+    letter-spacing: 0.05em;
+    max-width: 40rem;
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+
+.boton-header {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    border: 1px solid var(--color-on-surface);
+    padding: 10px 30px;
+    font-size: 12px;
+
+    letter-spacing: 0.15em;
+    transition: all 0.5s ease;
+}
+
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    padding: 20px 48px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    transition: all 0.5s ease;
+}
+
+.btn-icon {
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .btn-icon {
+    transform: translateX(8px);
+}
+
+.gold-glow:hover {
+    box-shadow: 0px 0px 30px rgba(212, 175, 55, 0.3);
+}
+
+.scroll-indicator {
+
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    opacity: 0.6;
+}
+
+.scroll-text {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.scroll-line {
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, var(--color-primary), transparent);
+}
+
+/* ==========================================PORTFOLIO SECTION========================================== */
+.portfolio-section {
+    padding: var(--section-gap-mobile) var(--gutter-mobile);
+}
+
+.section-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+    margin-bottom: 0px;
+}
+
+
+.subtitle-cinematic {
+    text-align: center;
+    margin-top: 50px;
+
+}
+
+
+.section-subtitle {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+.section-title-large {
+    font-family: FIGTREE;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.section-title-large-cinematic {
+    font-family: FIGTREE;
+    font-size: 32px;
+    font-weight: 400;
+    color: #d99703;
+}
+
+
+
+
+
+/*?linea */
+
+
+.linea {
+
+    width: 100%;
+    height: 1px;
+    background-color: rgba(252, 252, 252, 0.336);
+    margin: 25px 0;
+}
+
+
+.section-title-small-stories {
+
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-on-surface);
+    text-align: center;
+    margin-bottom: 32px;
+    margin-top: 0px;
+}
+
+.descripcion {
+    margin-top: 16px;
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--color-on-surface);
+}
+
+/* STORY CARDS PAREJAS */
+
+.story-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.5);
+    transition: all 1s ease;
+}
+
+.resalto_color {
+    color: var(--color-primary);
+}
+
+
+.stories-section {
+    padding: var(--section-gap-mobile) var(--gutter-mobile);
+}
+
+.section-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+
+.story-title {
+    font-family: NUNITO;
+    font-weight: 400;
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    margin-bottom: 16px;
+}
+
+
+.story-text {
+    font-size: 15px;
+    opacity: 0.85;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+/* boton de whatsapp */
+
+.whatsapp-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Asegura que el icono y texto estén centrados */
+    border: solid 1px #cfe7d8;
+    color: white;
+    padding: 10px 20px;
+    /* whats */
+    /* si no quieres el boton redondo solo elimina esta especificacion */
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+
+    /* Esto es lo que lo centra */
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+}
+
+.whatsapp-button:hover {
+    background-color: #128c7e;
+    /* Un tono más oscuro al pasar el mouse */
+}
+
+.whatsapp-button img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+/* ==========================================PORQUE TRABAJAR CON NOSOTROS========================================== */
+.experience-section {
+    padding: var(--section-gap-mobile) var(--gutter-mobile);
+    background-color: var(--color-on-surface);
+    overflow: hidden;
+
+}
+
+
+.experiencia {
+    font-size: 35px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--color-surface-variant);
+    font-weight: 700;
+    color: var(--color-surface);
+    font-weight: 530;
+    text-align: center;
+
+}
+
+.experience-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+    margin: 0;
+}
+
+.experience-image-block {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.frame-accent {
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    width: 160px;
+    height: 160px;
+    border-left: 1px solid rgba(217, 151, 3, 0.3);
+    border-top: 1px solid rgba(217, 151, 3, 0.3);
+    z-index: 0;
+}
+
+.author-portrait {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    display: block;
+    box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.author-badge {
+    position: absolute;
+    bottom: -24px;
+    right: -24px;
+    background-color: var(--color-primary);
+    padding: 16px 32px;
+    z-index: 20;
+}
+
+.author-name {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-surface);
+}
+
+.experience-title {
+    font-family: var(--font-display);
+    font-size: 40px;
+    line-height: 1.2;
+    margin-bottom: 32px;
+    color: var(--color-surface-variant);
+}
+
+.paragraph-highlight {
+    font-size: 15px;
+    opacity: 0.85;
+    margin-bottom: 24px;
+    color: var(--color-surface-variant);
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.features-list {
+    list-style: none;
+    margin-bottom: 48px;
+}
+
+.feature-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.feature-icon {
+    color: var(--color-primary);
+}
+
+.feature-title-item {
+    color: var(--color-surface-variant);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+}
+
+.feature-description {
+    font-size: 14px;
+    opacity: 0.7;
+    color: var(--color-surface-variant);
+}
+
+.link-interview {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    border-bottom: 1px solid var(--color-primary);
+    padding-bottom: 8px;
+    transition: letter-spacing 0.5s;
+}
+
+.link-interview:hover {
+    letter-spacing: 0.25em;
+}
+
+/*  ==========================================MARCAS========================================== */
+.marcas {
+    padding: var(--section-gap-mobile) var(--gutter-mobile);
+ 
+    /* background-color: var(--color-surface); */
+
+    overflow: hidden;
+}
+
+.marcas-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    
+}
+
+
+.marca-logo {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    filter: grayscale(0.5);
+    transition: all 0.5s ease;
+}
+
+
+.marca-logo:hover {
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+.marcas-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-on-surface);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+
+
+
+/* ==========================================PORTFOLIO SECTION========================================== */
+
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+}
+
+.portfolio-item {
+    position: relative;
+    aspect-ratio: 1.5;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.portfolio-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.5);
+    transition: all 1s ease;
+}
+
+.portfolio-item:hover .portfolio-img {
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+.portfolio-item-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(41, 70, 84, 0.7);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+}
+
+.portfolio-item:hover .portfolio-item-overlay {
+    opacity: 1;
+}
+
+.play-icon {
+    color: var(--color-primary);
+    font-size: 64px;
+    margin-bottom: 16px;
+    font-variation-settings: 'FILL' 1;
+}
+
+.item-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 0.05em;
+}
+
+.item-subtitle {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    margin-top: 8px;
+    opacity: 0.8;
+}
+
+
+
+
+
+/* boton de whatsapp FONDO BLANCO*/
+
+.whatsapp-button-blanco {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Asegura que el icono y texto estén centrados */
+    border: solid 1px var(--color-on-photo-bg);
+    color: var(--color-on-photo-bg);
+    padding: 10px 20px;
+    /* border-radius: 50px; */
+    /* si no quieres el boton redondo solo elimina esta especificacion */
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+
+    /* Esto es lo que lo centra */
+    margin: 0 auto;
+    width: fit-content;
+    display: flex;
+}
+
+.whatsapp-button-blanco:hover {
+    color: var(--color-on-surface);
+    background-color: #128c7e;
+    /* Un tono más oscuro al pasar el mouse */
+}
+
+.whatsapp-button-blanco img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+
+
+
+/* ==========================================
+   VIDEO REPRODUCTOR MODAL
+   ========================================== */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    background-color: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+}
+
+.modal-backdrop.open {
+    display: flex;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    color: white;
+    transition: color 0.3s;
+}
+
+.modal-close-btn:hover {
+    color: var(--color-primary);
+}
+
+.modal-close-btn .material-symbols-outlined {
+    font-size: 36px;
+}
+
+.modal-wrapper {
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16/9;
+    background-color: #000;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+
+
+/* ==========================================
+   TESTIMONIALS SECTION
+   ========================================== */
+.reviews-section {
+    padding: var(--section-gap-mobile) var(--gutter-mobile);
+    /* 1. La ruta de tu imagen */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(fotos_lalin/Recurso\ 24@2x.png);
+
+    /* 2. Asegura que la imagen cubra todo el contenedor */
+    background-size: cover;
+
+    /* 3. Centra la imagen */
+    background-position: center;
+
+    /* 4. Evita que la imagen se repita */
+    background-repeat: no-repeat;
+
+    /* 5. Altura mínima (ajusta según lo que necesites) */
+    min-height: 400px;
+    
+    /* Extra: Para que el texto se lea mejor sobre la imagen */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviews-container {
+    max-width: 896px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quote-icon {
+    font-size: 48px;
+    color: var(--color-primary);
+    margin-bottom: 32px;
+}
+
+.testimonial-carousel {
+    position: relative;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial-slide {
+    display: none;
+    opacity: 0;
+    transform: scale(0.95);
+    transition: all 0.7s ease;
+}
+
+.testimonial-slide.active {
+    display: block;
+    opacity: 1;
+    transform: scale(1);
+}
+
+.testimonial-text {
+    font-family: var(--font-display);
+    font-size: 24px;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 32px;
+    color: rgba(248, 247, 236, 0.9);
+}
+
+.testimonial-author {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    color: var(--color-primary);
+}
+
+.carousel-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 48px;
+}
+
+.carousel-btn {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(248, 247, 236, 0.3);
+    color: rgba(248, 247, 236, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.carousel-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+/* ==========================================
+   CONTACT SECTION
+   ========================================== */
+.contact-section {
+    padding: var(--section-gap-mobile) var(--gutter-mobile);
+    background-color: var(--color-surface-variant);
+}
+
+.contact-container {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+.contact-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.contact-title {
+    font-family: var(--font-display);
+    font-size: 40px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(248, 247, 236, 0.3);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    font-size: 16px;
+    padding: 16px 0;
+    transition: border-color 0.3s;
+    outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: var(--color-primary);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+    color: rgba(248, 247, 236, 0.4);
+}
+
+.form-textarea {
+    resize: none;
+}
+
+.form-submit-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+}
+
+.btn-submit {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 20px 64px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: all 0.5s ease;
+}
+
+.btn-submit:hover {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.site-footer {
+
+    border-t: 1px solid rgba(248, 247, 236, 0.1);
+    padding: 32px var(--gutter-mobile);
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 32px;
+    background-color: var(--color-surface);
+}
+
+.footer-logo-img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(0.5);
+
+    transition: all 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-image-footer {
+    width: 130px;
+    height: auto;
+    filter: grayscale(0.5);
+    transition: all 0.5s ease;
+    margin: 0;
+}
+
+
+.footer-logo {
+    font-family: var(--font-display);
+    color: var(--color-primary);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+
+}
+
+.footer-socials {
+    display: flex;
+    gap: 48px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    opacity: 0.8;
+}
+
+.footer-socials a:hover {
+    color: var(--color-primary);
+}
+
+.footer-copyright {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    opacity: 0.5;
+}
+
+/** ==========================================ANIMACIONES EFECTO REVEAL (FADE IN) ========================================== */
+/** animaciones para los elementos de la página  */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/*? ==========================================MEDIA QUERIES (RESPONSIVIDAD NATIVA)========================================== */
+@media (min-width: 768px) {
+
+    /* Ajustes generales de espaciado */
+    .portfolio-section,
+    .experience-section,
+    .reviews-section,
+    .contact-section {
+        padding-top: var(--section-gap-desktop);
+        padding-bottom: var(--section-gap-desktop);
+    }
+
+    .portfolio-section,
+    .site-footer {
+        padding-left: var(--gutter-desktop);
+        padding-right: var(--gutter-desktop);
+    }
+
+    .logo-header {
+        max-height: 40px;
+        /* Un poco más pequeño en móvil para dejar espacio al menú */
+    }
+
+    .nav-container {
+        padding: 0 var(--gutter-desktop);
+    }
+
+    .desktop-menu {
+        display: flex;
+        /* Activa el menú de escritorio */
+    }
+
+    .menu-toggle-btn {
+        display: none;
+        /* Oculta el menú hamburguesa */
+    }
+
+    .hero-title {
+        font-size: 24px;
+    }
+
+    .section-title-large {
+        font-size: 64px;
+        letter-spacing: -0.02em;
+        margin-bottom: 64px;
+
+    }
+
+    .section-header {
+        text-align: left;
+
+    }
+
+
+    .subtitle-cinematic {
+        text-align: center;
+        margin-top: 0px;
+
+        font-size: 24px;
+    }
+
+    /*?linea */
+
+
+
+
+    .linea {
+
+        width: 100%;
+        height: 1px;
+        background-color: rgba(252, 252, 252, 0.336);
+        margin: 64px 0;
+    }
+
+    .section-title-small-stories {
+
+        text-align: center;
+        margin-top: 0px;
+        font-size: 24px;
+    }
+
+
+
+
+
+
+    .linea {
+        height: 2px;
+        /* O el grosor que tenga tu línea */
+        background: #ece6e644;
+        /* Asegúrate de que tenga color */
+        margin: 25px 0;
+    }
+
+
+
+    /* ?titulo de CINEMATIC */
+
+
+    .section-header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .descripcion {
+        font-size: 15px;
+        opacity: 0.85;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .section-title-large-cinematic {
+
+        font-family: FIGTREE;
+        margin-right: 20px;
+        font-weight: 100;
+        color: #d99703;
+        font-size: 64px;
+        letter-spacing: -0.02em;
+        margin-bottom: 64px;
+
+
+    }
+
+    .section-title-large {
+        font-size: 64px;
+        font-weight: 100;
+        font-family: FIGTREE;
+    }
+
+
+
+
+    /*? stories-section Contenedor principal */
+
+    .stories-list {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        /* Espacio entre cada pareja */
+        padding: 1rem;
+    }
+
+    /* Estructura de cada tarjeta */
+    .story-card {
+        display: flex;
+        flex-direction: column;
+        /* Móvil: imagen arriba, texto abajo */
+        align-items: center;
+
+    }
+
+    /* Imagen y contenido ocupan ancho completo en móvil */
+    .story-image-wrapper,
+    .story-content {
+        width: 95%;
+    }
+
+    .story-img {
+        width: 100%;
+        height: auto;
+        border-radius: px;
+        /* Opcional: para que se vea más profesional */
+    }
+
+
+    /* ?PORQUE TRABAJR CON NOSOTROS DESKTOP */
+
+   author-portrait {
+        width: 100%;
+        height: 100px;
+        max-width: 750px;
+        margin: 0 auto;
+    }
+
+    .experiencia{
+        
+        margin-right: 50%;
+        
+    }
+
+    .experience-container {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+
+    .experience-text-block.fade-in {
+
+        text-align: center;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+
+    .section-subtitle {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--color-primary);
+    margin-bottom: 16px;
+}
+
+
+
+/* ?MARCAS */
+
+
+.marcas {
+    
+     display: flex; 
+    align-items: center;
+    justify-content:space-evenly;
+    padding: 1;
+    margin: 0;
+}
+
+.marcas-container {
+   
+    width: 100%;
+    display: flex; 
+    align-items: center;
+    justify-content:space-between;
+    padding: 0;
+    margin: 0;
+ }
+
+
+.marca-logo{
+    
+    width: 60%;
+    height: auto;
+    filter: grayscale(0.5);
+    transition: all 0.5s ease;
+    padding: 0;
+    margin: 0;
+}
+
+.marcas-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 400;  
+
+
+
+}
+
+
+.portfolio-section{
+    padding: 0;
+    margin: 0;
+    
+}
+
+
+
+
+
+
+    /*? --- ESTILOS PARA ESCRITORIO CINEMATICA (Desktop) --- */
+    @media (min-width: 768px) {
+        .story-card {
+            flex-direction: row;
+            /* Escritorio: imagen y texto lado a lado */
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .story-image-wrapper,
+        .story-content {
+            width: 48%;
+            /* 50% menos el gap/margen */
+        }
+
+        /* Alternar orden en las que tienen reverse-layout */
+        .story-card.reverse-layout {
+            flex-direction: row-reverse;
+        }
+    }
+
+    /* Estilos adicionales para que se vea bien */
+    .story-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+
+
+
+
+
+
+
+    /* ? PORTAFOLIO DESKTOP */
+
+
+    /* Grid de Portafolio en Escritorio */
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+
+    /* Grid de Experiencia en Escritorio */
+    .experience-container {
+        grid-template-columns: repeat(12, 1fr);
+        gap: 48px;
+    }
+
+    .experience-image-block {
+        grid-column: span 5;
+        margin: 0;
+    }
+
+    .experience-text-block {
+        grid-column: span 6;
+        grid-column-start: 7;
+    }
+
+    .experience-title {
+        font-size: 32px;
+    }
+
+    /* Formularios */
+    .form-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Footer */
+    .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+
+
+
+
+/* ?FIN DE RESPONSIVE MONITOR */
+
+.footer-socials a {
+    font-size: 29px;
+    /* Ajusta el tamaño del icono */
+    margin: 0 10px;
+    /* Espacio horizontal entre iconos */
+    color: var(--color-primary);
+    /* Ajusta el color a tu diseño */
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer-socials a:hover {
+    color: var(--color-on-surface);
+    /* Color al pasar el mouse */
+}
+
+.logo-accent-footer {
+    color: var(--color-primary);
+    font-weight: 700;
+    letter-spacing: 0.3em;
+}
+
+/* ==========================================
+   SECCIÓN DE PRECIOS (ESTILOS)
+   ========================================== */
+.pricing-section {
+    padding: var(--section-gap-mobile) var(--gutter-mobile);
+    background-color: var(--color-on-surface);
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .pricing-section { padding: var(--section-gap-desktop) var(--gutter-desktop); }
+    .pricing-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.price-card {
+    background-color: #fff;
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.price-card.featured {
+    border: 2px solid var(--color-primary);
+}
+
+.price-label {
+    color: var(--color-primary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.price-title {
+    font-family: var(--font-display);
+    font-size: 24px;
+    color: var(--color-surface);
+    margin-bottom: 16px;
+}
+
+.price-amount {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 24px;
+}
+
+.price-amount span {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+}
+
+.price-features {
+    list-style: none;
+    margin-bottom: 30px;
+    text-align: left;
+    flex-grow: 1;
+}
+
+.price-features li {
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--color-surface);
+    font-size: 14px;
+}
+
+.btn-reserve {
+    background-color: var(--color-primary);
+    color: var(--color-surface);
+    padding: 16px 32px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+}
+
+.btn-reserve:hover {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+}
